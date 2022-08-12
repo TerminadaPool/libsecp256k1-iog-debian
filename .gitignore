@@ -5,6 +5,10 @@ autoreconf.*
 .debhelper/
 debhelper-build-stamp
 libsecp256k1-0-iog/
+libsecp256k1-0-iog.debhelper.log
+libsecp256k1-0-iog.substvars
 libsecp256k1-dev-iog/
+libsecp256k1-dev-iog.debhelper.log
+libsecp256k1-dev-iog.substvars
 tmp/
 files
