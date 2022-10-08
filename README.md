@@ -1,14 +1,14 @@
 # Packaging libsecp256k1 (IOG version) as a debian package
-This document outlines one way to compile the IOG verson of libsecp256k1 into a debian package.
-This provides a way to easily install the IOG version of libsecp256k1-dev onto any stable debian system and have the package management system take care of everything.
+This document outlines one way to compile the IOG verson of libsecp256k1 into a deb package.
+This provides a way to easily install the IOG version of libsecp256k1-dev onto any Debian or Ubuntu system and have the package management system take care of everything.
 The IOG version of libsecp256k1 is required for compiling cardano-node version 1.35.0 onwards.
 
-This is not an official debian package and it doesn't do things the official debian way.  In particular, it is not possible to use the official debian stable version of haskell to compile the cardano-node.  Furthermore, this deb package will not deliver the proper copyright documents or any manuals.
+This is not an official deb package and it doesn't do things the official Debian/Ubuntu way.  In particular, it is not possible to use the official Debian/Ubuntu version of haskell to compile the cardano-node.  Furthermore, this deb package will not deliver the proper copyright documents or any manuals.
 
 The deb package produced will install things in the following standard locations:
 * Libraries (libsecp256k1.so.0, libsecp256k1.a, libsecp256k1.la) get placed in /usr/lib/
 
-# How to make your own libsecp256k1-0-iog and libsecp256k1-dev deb packages
+# How to make your own libsecp256k1-0-iog and libsecp256k1-dev-iog deb packages
 ## Setup your build environment
 Install build dependencies and some extra requirments  
 (as root)  
@@ -39,21 +39,23 @@ The following commands are all run from this 'builder' user account.
 Where there is a number of commands, each line ends with a backslash continuation sequence.  The sequence of commands can then be simply copied and pasted into a terminal to save typing.
 ****
 
-# Build the libsecp256k1-0 and libsecp256k1-dev debs
+# Build the libsecp256k1-0-iog and libsecp256k1-dev-iog debs
 This sequence of commands will completely remove and recreate the '~/src/libsecp256k1' directory.  
 Familiarise yourself with the following commands first.  
 Then you can simply copy and paste them all into a terminal and press enter.  
 ```
+echo "Removing directory ${HOME}/src/libsecp256k1"; \
 rm -rf ${HOME}/src/libsecp256k1; \
+echo "Creating directory ${HOME}/src/libsecp256k1"; \
 mkdir -p ${HOME}/src/libsecp256k1; \
 cd ${HOME}/src/libsecp256k1; \
-git clone https://github.com/bitcoin-core/secp256k1; \
-cd secp256k1; \
-git checkout ac83be33; \
 
 version=0.1; \
+
+git clone https://github.com/bitcoin-core/secp256k1 libsecp256k1-iog-${version}; \
+cd libsecp256k1-iog-${version}; \
+git checkout ac83be33; \
 cd ..; \
-mv secp256k1 libsecp256k1-iog-${version}; \
 tar cvzf libsecp256k1-iog_${version}.orig.tar.gz libsecp256k1-iog-${version}; \
 cd libsecp256k1-iog-${version}; \
 unset version; \
