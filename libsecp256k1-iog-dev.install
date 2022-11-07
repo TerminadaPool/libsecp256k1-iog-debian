@@ -1,4 +1,3 @@
 usr/include
 usr/lib/*/libsecp256k1*.a
-usr/lib/*/libsecp256k1*.la
 usr/lib/*/pkgconfig/libsecp256k1.pc

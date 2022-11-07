@@ -1,19 +1,27 @@
 #!/usr/bin/make -f
-# -*- makefile -*-
-
-export DH_VERBOSE=1
-export DEB_BUILD_MAINT_OPTIONS = hardening=+all
-export DEB_CFLAGS_MAINT_APPEND  = -Wall -pedantic
-export DEB_LDFLAGS_MAINT_APPEND = -Wl,--as-needed
 
 %:
-	dh $@ --with autoreconf -Bbuild
+	dh $@ --with pkgkde_symbolshelper
 
 override_dh_auto_configure:
 	dh_auto_configure -- \
-		--enable-shared \
 		--enable-module-recovery \
 		--enable-module-ecdh \
+		--enable-experimental \
 		--enable-module-extrakeys \
-		--enable-module-schnorrsig \
-		--enable-experimental
+		--enable-module-schnorrsig
+
+# Let d-shlibs calculate development package dependencies
+#  and handle shared library install
+override_dh_install:
+	dh_install
+	d-shlibmove --commit \
+		--suffix "-iog" \
+		--devsuffix "-iog" \
+		--devunversioned \
+		--exclude-la \
+		--multiarch \
+		--movedev "debian/tmp/usr/include/*" usr/include/ \
+		--movedev "debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)/pkgconfig/*" \
+			usr/lib/$(DEB_HOST_MULTIARCH)/pkgconfig \
+		debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)/*.so

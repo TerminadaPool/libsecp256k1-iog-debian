@@ -3,12 +3,10 @@
 # Debian build files
 autoreconf.*
 .debhelper/
+*.debhelper.log
 debhelper-build-stamp
+*.substvars
 libsecp256k1-0-iog/
-libsecp256k1-0-iog.debhelper.log
-libsecp256k1-0-iog.substvars
-libsecp256k1-dev-iog/
-libsecp256k1-dev-iog.debhelper.log
-libsecp256k1-dev-iog.substvars
+libsecp256k1-iog-dev/
 tmp/
 files
