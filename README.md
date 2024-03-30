@@ -72,9 +72,9 @@ Put these files in your own local debian repository and install them on every ma
 See: 'control' file for where this is configured.
 
 Expect to see the following lintian errors at the end of the build process:  
-> E: libsecp256k1-dev-iog: no-copyright-file
 > E: libsecp256k1-2-iog: no-copyright-file
-> W: libsecp256k1-iog: package-name-doesnt-match-sonames libsecp256k1
+> E: libsecp256k1-dev-iog: no-copyright-file
+> W: libsecp256k1-2-iog: package-name-doesnt-match-sonames libsecp256k1-2
 
 
 ### References
