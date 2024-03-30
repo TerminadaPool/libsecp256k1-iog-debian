@@ -1,0 +1,12 @@
+# vim .swp files
+*.swp
+# Debian build files
+autoreconf.*
+.debhelper/
+*.debhelper.log
+debhelper-build-stamp
+*.substvars
+libsecp256k1-*-iog/
+libsecp256k1-iog-dev/
+tmp/
+files
