@@ -40,7 +40,7 @@ The following sequence of commands will remove and recreate the "${HOME}/src/lib
 CARDANO_NODE_VERSION='8.9.1'; \
 IOHKNIX_COMMIT="$(curl https://raw.githubusercontent.com/IntersectMBO/cardano-node/$CARDANO_NODE_VERSION/flake.lock | jq -r '.nodes.iohkNix.locked.rev')"; \
 echo "iohk-nix commit: $IOHKNIX_COMMIT"; \
-SECP256K1_VERSION="$(curl https://raw.githubusercontent.com/input-output-hk/iohk-nix/$IOHKNIX_COMMIT/flake.lock | jq -r '.nodes.secp256k1.original.ref')"; \
+SECP256K1_VERSION="$(curl https://raw.githubusercontent.com/IntersectMBO/iohk-nix/$IOHKNIX_COMMIT/flake.lock | jq -r '.nodes.secp256k1.original.ref')"; \
 SECP256K1_VERSION="${SECP256K1_VERSION#v}"
 echo "Using secp256k1 version: ${SECP256K1_VERSION}"; \
 
@@ -51,14 +51,19 @@ mkdir -p "${basedir}"; \
 cd "${basedir}"; \
 rm -rf "${package}-${SECP256K1_VERSION}"; \
 
+# libsecp256k1 source
 git clone --depth 1 --branch "v${SECP256K1_VERSION}" https://github.com/bitcoin-core/secp256k1 "${package}-${SECP256K1_VERSION}"; \
 cd "${package}-${SECP256K1_VERSION}"; \
+
+# deb packages build instructions
 git clone "https://github.com/TerminadaPool/libsecp256k1-iog-debian.git" debian; \
 unset CARDANO_NODE_VERSION IOHKNIX_COMMIT SECP256K1_VERSION package basedir; \
+
+# build deb packages
 debuild -us -uc -b;
 ```
 
-Your debs will be produced in the parent directory: "${HOME}/src/libsodium-iog/".  They will be named something like:  
+Your debs will be produced in the parent directory: "${HOME}/src/libsecp256k1-iog/".  They will be named something like:  
 * libsecp256k1-dev-iog_0.3.2_amd64.deb
 * libsecp256k1-2-iog_0.3.2_amd64.deb
 
