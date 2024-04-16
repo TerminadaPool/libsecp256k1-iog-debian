@@ -40,9 +40,12 @@ sudo su - builder
 The rest of this document assumes you are using your 'builder' account:  
 builder@build:~$
 
+Ensure you have set the variable CARDANO_NODE_VERSION to the current release version of cardano-node.  
+See: [cardano-node-debian](/debian/cardano-node-debian)
+
 The following sequence of commands will remove and recreate the "${HOME}/src/libsecp256k1-iog" directory.  Familiarise yourself with the following commands before running them.  You can simply copy and paste the entire list of commands below into a bash terminal to run them in sequence.
 ```
-CARDANO_NODE_VERSION='8.9.1'; \
+# IOG specified SECP256K1_VERSION depends on CARDANO_NODE_VERSION
 IOHKNIX_COMMIT="$(curl https://raw.githubusercontent.com/IntersectMBO/cardano-node/$CARDANO_NODE_VERSION/flake.lock | jq -r '.nodes.iohkNix.locked.rev')"; \
 echo "iohk-nix commit: $IOHKNIX_COMMIT"; \
 SECP256K1_VERSION="$(curl https://raw.githubusercontent.com/input-output-hk/iohk-nix/$IOHKNIX_COMMIT/flake.lock | jq -r '.nodes.secp256k1.original.ref')"; \
