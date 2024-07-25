@@ -49,7 +49,7 @@ The following sequence of commands will remove and recreate the "${HOME}/src/lib
 IOHKNIX_COMMIT="$(curl https://raw.githubusercontent.com/IntersectMBO/cardano-node/$CARDANO_NODE_VERSION/flake.lock | jq -r '.nodes.iohkNix.locked.rev')"; \
 echo "iohk-nix commit: $IOHKNIX_COMMIT"; \
 SECP256K1_VERSION="$(curl https://raw.githubusercontent.com/input-output-hk/iohk-nix/$IOHKNIX_COMMIT/flake.lock | jq -r '.nodes.secp256k1.original.ref')"; \
-SECP256K1_VERSION="${SECP256K1_VERSION#v}"
+SECP256K1_VERSION="${SECP256K1_VERSION#v}"; \
 echo "Using secp256k1 version: ${SECP256K1_VERSION}"; \
 
 package='libsecp256k1-iog'; \
