@@ -1,0 +1,78 @@
+Source: libsecp256k1-iog
+Section: libs
+Priority: optional
+Build-Depends: debhelper-compat (= 13), pkg-config, libgmp-dev, libssl-dev, autoconf-archive, d-shlibs, pkg-kde-tools
+Maintainer: builder <builder@terminada.io>
+Standards-Version: 4.5.1
+Homepage: https://github.com/bitcoin/secp256k1
+Vcs-Git: git://github.com/bitcoin/secp256k1
+Vcs-Browser: https://github.com/bitcoin/secp256k1
+Rules-Requires-Root: no
+
+Package: libsecp256k1-2-iog
+Section: libs
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Pre-Depends: ${misc:Pre-Depends}
+Conflicts: libsecp256k1-2
+Replaces: libsecp256k1-2
+Provides: libsecp256k1-2 (= 0.3.2)
+Architecture: any
+Multi-Arch: same
+Description: library for EC operations on curve secp256k1
+ An optimized C library for EC operations on curve secp256k1.
+ .
+ NB! This library is intended to be
+ the highest quality publicly available library
+ for cryptography on the secp256k1 curve.
+ However, the primary focus of its development has been
+ for usage in the Bitcoin system
+ and usage unlike Bitcoin's may be less well tested, verified,
+ or suffer from a less well thought out interface.
+ Correct usage requires some care and consideration
+ that the library is fit for your application's purpose.
+ .
+ Features:
+  * secp256k1 ECDSA signing/verification and key generation.
+  * Additive and multiplicative tweaking of secret/public keys.
+  * Serialization/parsing of secret keys, public keys, signatures.
+  * Constant time, constant memory access signing and public key generation.
+  * Derandomized ECDSA (via RFC6979 or with a caller provided function.)
+  * Very efficient implementation.
+  * Suitable for embedded systems.
+  * Optional module for public key recovery.
+  * Optional module for ECDH key exchange.
+
+Package: libsecp256k1-dev-iog
+Section: libdevel
+Depends: libsecp256k1-2-iog (= ${binary:Version}), pkg-config, ${devlibs:Depends}, ${misc:Depends}
+Conflicts: libsecp256k1-dev
+Replaces: libsecp256k1-dev
+Provides: libsecp256k1-dev (= 0.3.2)
+Architecture: any
+Multi-Arch: same
+Description: library for EC operations on curve secp256k1 - development headers
+ An optimized C library for EC operations on curve secp256k1.
+ .
+ NB! This library is intended to be
+ the highest quality publicly available library
+ for cryptography on the secp256k1 curve.
+ However, the primary focus of its development has been
+ for usage in the Bitcoin system
+ and usage unlike Bitcoin's may be less well tested, verified,
+ or suffer from a less well thought out interface.
+ Correct usage requires some care and consideration
+ that the library is fit for your application's purpose.
+ .
+ Features:
+  * secp256k1 ECDSA signing/verification and key generation.
+  * Additive and multiplicative tweaking of secret/public keys.
+  * Serialization/parsing of secret keys, public keys, signatures.
+  * Constant time, constant memory access signing and public key generation.
+  * Derandomized ECDSA (via RFC6979 or with a caller provided function.)
+  * Very efficient implementation.
+  * Suitable for embedded systems.
+  * Optional module for public key recovery.
+  * Optional module for ECDH key exchange.
+ .
+ This package provides header files for developing your applications to
+ use libbitcoin template engine.
